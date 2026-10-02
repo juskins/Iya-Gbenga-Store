@@ -1,15 +1,6 @@
 import "server-only";
 
-export type SendResult = { ok: true; providerId: string | null } | { ok: false; error: string };
-
-type Message = {
-  to: string;
-  subject: string;
-  text: string;
-  html: string;
-  /** Resend de-duplicates sends that share a key (valid for 24h), so retries never double-send. */
-  idempotencyKey?: string;
-};
+import type { EmailMessage, SendResult } from "./types";
 
 const API_URL = "https://api.resend.com/emails";
 const BACKOFF_MS = [500, 1500, 4000];
@@ -21,7 +12,7 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const isRetryable = (status: number) => status === 429 || status >= 500;
 
 /** Sends one email through the Resend HTTP API, retrying transient failures up to 3 times. Never throws. */
-export async function sendEmail(message: Message): Promise<SendResult> {
+export async function sendViaResend(message: EmailMessage): Promise<SendResult> {
   const key = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM;
   if (!key || !from) return { ok: false, error: "Resend is not configured" };

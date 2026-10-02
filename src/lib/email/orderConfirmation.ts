@@ -2,7 +2,7 @@ import "server-only";
 import { createAdminClient } from "@/lib/supabase/admin";
 import type { OrderAddress, PaymentMethod } from "@/lib/types-order";
 import { getBankDetails } from "./bank";
-import { sendEmail } from "./resend";
+import { sendEmail } from "./send";
 import { orderEmailSubject, renderOrderHtml, renderOrderText, type EmailOrder } from "./templates";
 
 const EMAIL_TYPE = "order_confirmation";
