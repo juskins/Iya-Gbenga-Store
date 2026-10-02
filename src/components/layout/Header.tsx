@@ -7,7 +7,6 @@ import { Suspense, useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
 import { categories } from "@/lib/data/categories";
-import { IMG } from "@/lib/data/images";
 import { formatNaira } from "@/lib/format";
 import { FREE_DELIVERY_THRESHOLD_KOBO, SUPPORT_PHONE } from "@/lib/config";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -112,7 +111,7 @@ export default function Header() {
             <Icon name="menu" className="text-2xl" />
           </button>
           <Link href="/" className="flex items-center gap-3">
-            <Image src={IMG.logo} alt="" width={32} height={32} className="h-8 w-auto object-contain" priority />
+            <Image src="/logo.png" alt="" width={56} height={56} className="h-14 w-auto object-contain" priority />
             <span className="flex flex-col">
               <span className="font-headline-sm text-headline-sm text-primary tracking-tight">Iya Gbenga&apos;s</span>
               <span className="font-label-caps text-label-caps text-secondary tracking-widest uppercase">
