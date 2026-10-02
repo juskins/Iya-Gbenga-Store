@@ -1,3 +1,75 @@
+# Iya Gbenga's Store - Agent Instructions
+
+## Project Context
+
+Before making any changes to this project, read and understand:
+
+- `PRD.md` — contains the complete product requirements and functionality.
+- `designs/` — contains the approved UI/UX designs and should be treated as the source of truth for the visual implementation.
+
+## Design Requirements
+
+Follow the designs in `designs/` closely.
+
+Do not redesign, reinterpret, or introduce a different visual direction unless explicitly requested.
+
+Use the designs as the source of truth for:
+- Layout
+- Spacing
+- Typography
+- Colors
+- Components
+- Navigation
+- Responsive behavior
+- Page structure
+- User flows
+
+If a design and the PRD appear to conflict:
+1. Identify the conflict.
+2. Prefer the explicit functional requirement in `PRD.md`.
+3. Preserve the visual design unless instructed otherwise.
+
+## Development Rules
+
+- Read `PRD.md` before implementing features.
+- Inspect the relevant design before implementing UI.
+- Do not build features that are not required by the PRD unless explicitly requested.
+- Reuse existing components before creating new ones.
+- Do not break existing functionality.
+- Keep the code clean, modular, and maintainable.
+- Use TypeScript properly.
+- Keep secrets out of the client.
+- Use environment variables for credentials and API keys.
+- Test your changes before considering a task complete.
+
+## Before Starting a Task
+
+For every task:
+
+1. Read the relevant section of `PRD.md`.
+2. Inspect the relevant design files.
+3. Inspect the existing implementation.
+4. Determine what needs to change.
+5. Implement the smallest complete solution.
+6. Check for TypeScript, runtime, and UI issues.
+
+## Important
+
+Do not assume missing requirements.
+
+If something is unclear, inspect the PRD, designs, and existing code first before making a decision.
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 # This is NOT the Next.js you know
