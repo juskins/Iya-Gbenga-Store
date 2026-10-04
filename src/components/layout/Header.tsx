@@ -113,8 +113,8 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-3">
             <Image src="/logo.png" alt="" width={56} height={56} className="h-14 w-auto object-contain" priority />
             <span className="flex flex-col">
-              <span className="font-headline-sm text-headline-sm text-primary tracking-tight">Iya Gbenga&apos;s</span>
-              <span className="font-label-caps text-label-caps text-secondary tracking-widest uppercase">
+              <span className="font-headline-sm text-headline-sm text-primary tracking-tight whitespace-nowrap">Iya Gbenga&apos;s</span>
+              <span className="hidden sm:block font-label-caps text-label-caps text-secondary tracking-widest uppercase">
                 Authentic Groceries
               </span>
             </span>
