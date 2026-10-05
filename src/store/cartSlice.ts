@@ -6,9 +6,11 @@ export type CartState = {
   items: CartItem[];
   note: string;
   hydrated: boolean;
+  /** Signed-in user id: cart is synced to the database. null = guest (local only). */
+  userId: string | null;
 };
 
-const initialState: CartState = { items: [], note: "", hydrated: false };
+const initialState: CartState = { items: [], note: "", hydrated: false, userId: null };
 
 const clamp = (q: number, max: number) => Math.max(1, Math.min(q, max));
 
@@ -20,6 +22,15 @@ const cartSlice = createSlice({
       state.items = action.payload.items;
       state.note = action.payload.note;
       state.hydrated = true;
+    },
+    /** Replaces the whole cart with the server copy (already live-priced). */
+    replaceCart(state, action: PayloadAction<{ items: CartItem[]; note: string }>) {
+      state.items = action.payload.items;
+      state.note = action.payload.note;
+      state.hydrated = true;
+    },
+    setUser(state, action: PayloadAction<string | null>) {
+      state.userId = action.payload;
     },
     addItem(state, action: PayloadAction<Omit<CartItem, "quantity"> & { quantity?: number }>) {
       const { quantity = 1, ...item } = action.payload;
@@ -63,7 +74,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { hydrate, addItem, setQuantity, removeItem, setNote, reconcile, clearCart } = cartSlice.actions;
+export const { hydrate, replaceCart, setUser, addItem, setQuantity, removeItem, setNote, reconcile, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
 
 // Display-only totals. The server recalculates everything at checkout.

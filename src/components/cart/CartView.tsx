@@ -17,19 +17,21 @@ import RecommendedAddOns from "./RecommendedAddOns";
 export default function CartView({ products }: { products: Product[] }) {
   const dispatch = useAppDispatch();
   const hydrated = useAppSelector((s) => s.cart.hydrated);
+  const signedIn = useAppSelector((s) => s.cart.userId !== null);
   const items = useAppSelector((s) => s.cart.items);
   const count = useAppSelector(selectCartCount);
   const subtotal = useAppSelector(selectCartSubtotal);
 
   // Sync saved lines with the live catalog: drop unavailable items, refresh prices and limits.
   useEffect(() => {
-    if (!hydrated) return;
+    // Signed-in carts come from the database with live prices already; this is for guest carts only.
+    if (!hydrated || signedIn) return;
     const live: Record<string, { priceKobo: number; maxPerOrder: number }> = {};
     for (const p of products)
       for (const v of p.variants)
         if (v.stockQty > 0) live[v.id] = { priceKobo: v.priceKobo, maxPerOrder: Math.min(v.maxPerOrder, v.stockQty) };
     dispatch(reconcile(live));
-  }, [hydrated, products, dispatch]);
+  }, [hydrated, signedIn, products, dispatch]);
 
   return (
     <div className="w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-space-md">
