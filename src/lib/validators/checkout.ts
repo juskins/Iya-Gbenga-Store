@@ -80,7 +80,7 @@ export const placeOrderSchema = z.object({
 export type PlaceOrderInput = z.infer<typeof placeOrderSchema>;
 
 export type PlaceOrderResult =
-  | { ok: true; orderNumber: string }
+  | { ok: true; orderNumber: string; orderId: string; totalKobo: number }
   | {
       ok: false;
       code: string;
