@@ -162,7 +162,7 @@ export default function Header() {
           )}
           <Link
             href="/cart"
-            aria-label={`Cart, ${count} items, ${formatNaira(subtotal)}`}
+            aria-label={`Cart, ${count} ${count === 1 ? "item" : "items"}, ${formatNaira(subtotal)}`}
             className="flex items-center gap-space-xs bg-primary text-on-primary px-4 py-2 min-h-11 rounded-full hover:bg-primary-container transition-all shadow-[0_2px_8px_-2px_rgba(22,78,51,0.2)]"
           >
             <Icon name="shopping_bag" className="text-xl" />
